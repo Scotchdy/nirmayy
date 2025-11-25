@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FARMER_ALERTS, MOCK_PRESCRIPTIONS } from "@/lib/mock-data";
-import { MessageSquare, Lock, Unlock, Check, X } from "lucide-react";
+import { MessageSquare, Lock, Unlock, Check, X, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -65,6 +65,13 @@ export default function Communication() {
                   </div>
                   <p className="text-sm mb-4">{alert.message}</p>
                   <div className="flex gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => toast({ title: "Calling Farmer", description: `Dialing ${alert.farmer}...` })}
+                    >
+                      <Phone className="h-4 w-4 mr-2" /> Call
+                    </Button>
                     <Button 
                       size="sm" 
                       variant="outline"
