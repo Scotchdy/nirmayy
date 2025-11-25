@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Stethoscope, ArrowRight, CheckCircle2 } from "lucide-react";
-import bgImage from "@assets/generated_images/abstract_medical_technology_background_with_calm_colors.png";
-import logo from "@assets/1758106860242_1764078111850.png";
+import bgImage from "@assets/generated_images/modern_bright_veterinary_clinic_interior_background.png";
+import logo from "@assets/download_1764080227658.png";
 
 export default function Login() {
   const [, setLocation] = useLocation();

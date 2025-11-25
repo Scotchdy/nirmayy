@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Toaster } from "@/components/ui/toaster";
-import logo from "@assets/1758106860242_1764078111850.png";
+import logo from "@assets/download_1764080227658.png";
 
 interface LayoutProps {
   children: React.ReactNode;
