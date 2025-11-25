@@ -4,14 +4,36 @@ import { Badge } from "@/components/ui/badge";
 import { FARMER_ALERTS, MOCK_PRESCRIPTIONS } from "@/lib/mock-data";
 import { MessageSquare, Lock, Unlock, Check, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export default function Communication() {
   const { toast } = useToast();
+  const [approvedIds, setApprovedIds] = useState<number[]>([]);
+  const [rejectedIds, setRejectedIds] = useState<number[]>([]);
 
   const handleLockToggle = (id: number) => {
     toast({
       title: "Medicine Lock Updated",
       description: `Medicine access for prescription #${id} has been toggled.`,
+    });
+  };
+
+  const handleApprove = (id: number) => {
+    setApprovedIds([...approvedIds, id]);
+    toast({
+      title: "Prescription Approved",
+      description: `Prescription #${id} has been approved and sent to the farmer.`,
+      variant: "default",
+      className: "bg-green-50 border-green-200 text-green-900",
+    });
+  };
+
+  const handleReject = (id: number) => {
+    setRejectedIds([...rejectedIds, id]);
+    toast({
+      title: "Prescription Rejected",
+      description: `Prescription #${id} has been returned for corrections.`,
+      variant: "destructive",
     });
   };
 
@@ -43,8 +65,19 @@ export default function Communication() {
                   </div>
                   <p className="text-sm mb-4">{alert.message}</p>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline">Request Details</Button>
-                    <Button size="sm">Send Solution</Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => toast({ title: "Request Sent", description: "Asked farmer for more details regarding this alert." })}
+                    >
+                      Request Details
+                    </Button>
+                    <Button 
+                      size="sm"
+                      onClick={() => toast({ title: "Solution Sent", description: "Standard protocol has been messaged to the farmer." })}
+                    >
+                      Send Solution
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -95,8 +128,8 @@ export default function Communication() {
             </h2>
             <Card>
               <CardContent className="p-0">
-                {MOCK_PRESCRIPTIONS.filter(p => p.status === "Pending Approval").map((p) => (
-                  <div key={p.id} className="p-4 border-b last:border-0">
+                {MOCK_PRESCRIPTIONS.filter(p => p.status === "Pending Approval" && !approvedIds.includes(p.id) && !rejectedIds.includes(p.id)).map((p) => (
+                  <div key={p.id} className="p-4 border-b last:border-0 animate-in fade-in slide-in-from-right-4">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-medium">{p.medicine} - {p.dosage}</p>
@@ -105,12 +138,25 @@ export default function Communication() {
                       <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">Pending</Badge>
                     </div>
                     <div className="flex gap-2 mt-3">
-                      <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">Approve & Push</Button>
-                      <Button size="sm" variant="outline" className="w-full text-destructive hover:bg-destructive/10">Reject</Button>
+                      <Button 
+                        size="sm" 
+                        className="w-full bg-green-600 hover:bg-green-700"
+                        onClick={() => handleApprove(p.id)}
+                      >
+                        Approve & Push
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="w-full text-destructive hover:bg-destructive/10"
+                        onClick={() => handleReject(p.id)}
+                      >
+                        Reject
+                      </Button>
                     </div>
                   </div>
                 ))}
-                {MOCK_PRESCRIPTIONS.filter(p => p.status === "Pending Approval").length === 0 && (
+                {MOCK_PRESCRIPTIONS.filter(p => p.status === "Pending Approval" && !approvedIds.includes(p.id) && !rejectedIds.includes(p.id)).length === 0 && (
                   <div className="p-8 text-center text-muted-foreground text-sm">
                     No pending approvals
                   </div>

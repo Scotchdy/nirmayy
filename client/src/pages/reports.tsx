@@ -1,9 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileBarChart, Download, AlertOctagon, ExternalLink, Beaker } from "lucide-react";
+import { FileBarChart, Download, AlertOctagon, ExternalLink, Beaker, Clock } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Reports() {
+  const { toast } = useToast();
+
   return (
     <div className="space-y-8">
       <div>
@@ -31,8 +34,22 @@ export default function Reports() {
               <CardContent className="space-y-4">
                 <p className="text-sm">Antibiotic residue detected above legal limits in milk sample.</p>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="destructive" className="w-full">Take Action</Button>
-                  <Button size="sm" variant="outline" className="w-full bg-white">Contact</Button>
+                  <Button 
+                    size="sm" 
+                    variant="destructive" 
+                    className="w-full"
+                    onClick={() => toast({ title: "Action Initiated", description: "Starting violation protocol for Farm B..." })}
+                  >
+                    Take Action
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full bg-white"
+                    onClick={() => toast({ title: "Contacting Farm", description: "Connecting to Suresh Patel (Farm B)..." })}
+                  >
+                    Contact
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -48,7 +65,13 @@ export default function Reports() {
               <CardContent className="space-y-4">
                 <p className="text-sm">Marked as 'Clear' by farmer but calculation suggests 2 more days needed.</p>
                 <div className="flex gap-2">
-                  <Button size="sm" className="w-full">Review Case</Button>
+                  <Button 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => toast({ title: "Reviewing Case", description: "Opening details for BUF-103..." })}
+                  >
+                    Review Case
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -64,7 +87,11 @@ export default function Reports() {
                   <CardDescription>Monthly generated report</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="outline" className="w-full gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="w-full gap-2"
+                    onClick={() => toast({ title: "Downloading Report", description: `Generating PDF for ${report}...` })}
+                  >
                     <Download className="h-4 w-4" /> Download PDF
                   </Button>
                 </CardContent>
@@ -110,7 +137,13 @@ export default function Reports() {
                           </span>
                         </td>
                         <td className="p-4 text-right">
-                          <Button size="sm" variant="ghost">View</Button>
+                          <Button 
+                            size="sm" 
+                            variant="ghost"
+                            onClick={() => toast({ title: "Opening Report", description: `Loading details for ${row.id}...` })}
+                          >
+                            View
+                          </Button>
                         </td>
                       </tr>
                     ))}
@@ -124,5 +157,3 @@ export default function Reports() {
     </div>
   );
 }
-
-import { Clock } from "lucide-react";

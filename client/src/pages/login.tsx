@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label";
 import { Stethoscope, ArrowRight, CheckCircle2 } from "lucide-react";
 import bgImage from "@assets/generated_images/abstract_medical_technology_background_with_calm_colors.png";
+import logo from "@assets/1758106860242_1764078111850.png";
 
 export default function Login() {
   const [, setLocation] = useLocation();
@@ -54,8 +55,8 @@ export default function Login() {
       <div className="flex w-full items-center justify-center bg-background p-8 lg:w-1/2">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Stethoscope className="h-6 w-6" />
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <img src={logo} alt="Nirmay Logo" className="h-12 w-12 object-contain" />
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight">Welcome to Nirmay</h2>
             <p className="mt-2 text-sm text-muted-foreground">

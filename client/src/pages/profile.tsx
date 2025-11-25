@@ -4,8 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User, Mail, Phone, MapPin, Shield } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Profile() {
+  const { toast } = useToast();
+
   return (
     <div className="space-y-8">
       <div>
@@ -34,7 +37,13 @@ export default function Profile() {
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" /> District Veterinary Hospital, Anand
               </div>
-              <Button className="w-full mt-4" variant="outline">Edit Profile</Button>
+              <Button 
+                className="w-full mt-4" 
+                variant="outline"
+                onClick={() => toast({ title: "Edit Profile", description: "Profile editing is disabled in this demo." })}
+              >
+                Edit Profile
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -56,7 +65,9 @@ export default function Profile() {
                 <Label>New Password</Label>
                 <Input type="password" placeholder="Enter new password" />
               </div>
-              <Button>Update Password</Button>
+              <Button onClick={() => toast({ title: "Success", description: "Password has been updated successfully." })}>
+                Update Password
+              </Button>
             </CardContent>
           </Card>
 
@@ -70,7 +81,7 @@ export default function Profile() {
                   <Label className="text-base">Email Notifications</Label>
                   <p className="text-sm text-muted-foreground">Receive daily summaries of critical alerts.</p>
                 </div>
-                <div className="h-6 w-11 rounded-full bg-primary p-1">
+                <div className="h-6 w-11 rounded-full bg-primary p-1 cursor-pointer" onClick={() => toast({ title: "Setting Updated", description: "Email notifications preference saved." })}>
                   <div className="h-4 w-4 rounded-full bg-white translate-x-5 transition-transform" />
                 </div>
               </div>
@@ -79,7 +90,7 @@ export default function Profile() {
                   <Label className="text-base">SMS Alerts</Label>
                   <p className="text-sm text-muted-foreground">Get instant SMS for MRL violations.</p>
                 </div>
-                <div className="h-6 w-11 rounded-full bg-primary p-1">
+                <div className="h-6 w-11 rounded-full bg-primary p-1 cursor-pointer" onClick={() => toast({ title: "Setting Updated", description: "SMS alerts preference saved." })}>
                   <div className="h-4 w-4 rounded-full bg-white translate-x-5 transition-transform" />
                 </div>
               </div>

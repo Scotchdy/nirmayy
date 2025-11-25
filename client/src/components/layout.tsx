@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Toaster } from "@/components/ui/toaster";
+import logo from "@assets/1758106860242_1764078111850.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -36,7 +37,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="flex h-full flex-col gap-4">
       <div className="flex h-16 items-center border-b px-6">
         <Link href="/dashboard" className="flex items-center gap-2 font-heading text-xl font-bold text-primary">
-          <Stethoscope className="h-6 w-6" />
+          <img src={logo} alt="Nirmay Logo" className="h-8 w-8 object-contain" />
           <span>Nirmay</span>
         </Link>
       </div>

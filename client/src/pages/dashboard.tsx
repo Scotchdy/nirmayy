@@ -106,7 +106,14 @@ export default function Dashboard() {
           <h3 className="font-bold text-sm">Critical Compliance Alert</h3>
           <p className="text-sm opacity-90">MRL Violation detected in Sample #992 (Farm B). Immediate action required.</p>
         </div>
-        <Button variant="destructive" size="sm" className="ml-auto">Review</Button>
+        <Button 
+          variant="destructive" 
+          size="sm" 
+          className="ml-auto"
+          onClick={() => toast({ title: "Reviewing Violation", description: "Opening case file for Sample #992..." })}
+        >
+          Review
+        </Button>
       </div>
 
       {/* Stats Grid */}
@@ -172,7 +179,7 @@ export default function Dashboard() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                <Button variant="outline">Filter</Button>
+                <Button variant="outline" onClick={() => toast({ title: "Filtered", description: "Showing results for " + (searchTerm || "all animals") })}>Filter</Button>
               </div>
 
               <div className="space-y-4">
@@ -229,7 +236,14 @@ export default function Dashboard() {
                     <span className="text-sm">Farm C (Amit)</span>
                     <XCircle className="h-5 w-5 text-red-500" />
                   </div>
-                  <Button variant="outline" size="sm" className="w-full mt-2">View All Farms</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full mt-2"
+                    onClick={() => toast({ title: "Loading Farms", description: "Fetching comprehensive list..." })}
+                  >
+                    View All Farms
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -245,7 +259,13 @@ export default function Dashboard() {
                    <li>Updated MRL Limits for Dairy</li>
                    <li>Withdrawal Period Calculation Guide</li>
                  </ul>
-                 <Button variant="link" className="px-0 mt-2 h-auto">Access Knowledge Base &rarr;</Button>
+                 <Button 
+                  variant="link" 
+                  className="px-0 mt-2 h-auto"
+                  onClick={() => toast({ title: "Knowledge Base", description: "Opening knowledge base in a new tab..." })}
+                >
+                  Access Knowledge Base &rarr;
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -300,9 +320,27 @@ export default function Dashboard() {
               <CardTitle className="text-lg">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-2">
-              <Button variant="outline" className="justify-start">Update Treatment Record</Button>
-              <Button variant="outline" className="justify-start">Report Adverse Reaction</Button>
-              <Button variant="outline" className="justify-start">Schedule Farm Visit</Button>
+              <Button 
+                variant="outline" 
+                className="justify-start"
+                onClick={() => toast({ title: "Update Record", description: "Opening treatment record update form..." })}
+              >
+                Update Treatment Record
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start"
+                onClick={() => toast({ title: "Report Issue", description: "Opening adverse reaction reporting form..." })}
+              >
+                Report Adverse Reaction
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start"
+                onClick={() => toast({ title: "Schedule Visit", description: "Opening calendar for scheduling..." })}
+              >
+                Schedule Farm Visit
+              </Button>
             </CardContent>
           </Card>
         </div>
