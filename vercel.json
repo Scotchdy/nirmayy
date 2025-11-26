@@ -1,0 +1,6 @@
+﻿{
+  "buildCommand": "npm ci && npx vite build",
+  "outputDirectory": "dist/public",
+  "framework": null,
+  "ignoreCommand": "[ ! -d .git ] || git diff --quiet HEAD~1"
+}
