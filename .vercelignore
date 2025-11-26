@@ -1,0 +1,11 @@
+﻿server/
+shared/
+node_modules/
+.git/
+.github/
+*.ts
+!client/**
+drizzle/
+*.sqlite
+.env
+.env.local
